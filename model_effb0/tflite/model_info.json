@@ -1,0 +1,51 @@
+{
+  "classes": [
+    "acne",
+    "eczema",
+    "oily",
+    "dry",
+    "normal"
+  ],
+  "severity": [
+    "mild",
+    "moderate",
+    "severe"
+  ],
+  "input": {
+    "name": "image",
+    "shape": [
+      1,
+      224,
+      224,
+      3
+    ],
+    "color": "RGB",
+    "range": "0..255 (no normalisation)",
+    "dtype": {
+      "skinlens_fp32.tflite": "float32",
+      "skinlens_fp16.tflite": "float32",
+      "skinlens_int8.tflite": "uint8"
+    },
+    "preprocess": "apply EXIF rotation, center-crop largest square, resize to 224x224 bilinear"
+  },
+  "output": {
+    "shape": [
+      1,
+      5
+    ],
+    "dtype": "float32",
+    "meaning": "calibrated class probabilities (sum to 1)"
+  },
+  "severity_output": {
+    "shape": [
+      1,
+      3
+    ],
+    "dtype": "float32",
+    "meaning": "calibrated severity probabilities (mild, moderate, severe); ignore when the top class is normal",
+    "note": "two outputs: identify them by last dimension (5 = classes, 3 = severity), not by index"
+  },
+  "temperature": 0.75,
+  "severity_temperature": 0.88,
+  "suggested_min_confidence": 0.5
+}

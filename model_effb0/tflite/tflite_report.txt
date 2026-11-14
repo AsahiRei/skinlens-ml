@@ -1,0 +1,134 @@
+temperature 0.75, severity temperature 0.88
+== keras (reference)
+accuracy 1.0000   macro-F1 1.0000
+
+class      prec recall     F1     n
+acne      1.000  1.000  1.000     6
+eczema    1.000  1.000  1.000     6
+oily      1.000  1.000  1.000     6
+dry       1.000  1.000  1.000     6
+normal    1.000  1.000  1.000     6
+
+confusion (rows = true, cols = predicted)
+           acne eczema   oily    dry normal
+acne          6      0      0      0      0
+eczema        0      6      0      0      0
+oily          0      0      6      0      0
+dry           0      0      0      6      0
+normal        0      0      0      0      6
+== keras severity (reference, non-normal tiles)
+accuracy 0.7500   macro-F1 0.7389
+
+class      prec recall     F1     n
+mild      0.667  1.000  0.800     8
+moderate  0.750  0.750  0.750     8
+severe    1.000  0.500  0.667     8
+
+confusion (rows = true, cols = predicted)
+           mild modera severe
+mild          8      0      0
+moderate      2      6      0
+severe        2      2      4
+
+file                         MB     acc  macroF1   agree  max|dp|  sev_acc  sev_agr  ms/img
+skinlens_fp32.tflite      16.09  1.0000   1.0000  1.0000   0.0000   0.7500   1.0000     9.3
+skinlens_fp16.tflite       8.15  1.0000   1.0000  1.0000   0.0031   0.7500   1.0000     6.0
+skinlens_int8.tflite       4.94  0.6333   0.6196  0.6333   0.8714   0.7083   0.8667    17.0
+
+agree = top-1 agreement with keras; max|dp| = largest probability difference (both heads); sev_acc = severity accuracy on non-normal tiles; sev_agr = severity top-1 agreement with keras; ms/img = median CPU latency here (4 threads)
+
+== skinlens_fp32.tflite
+accuracy 1.0000   macro-F1 1.0000
+
+class      prec recall     F1     n
+acne      1.000  1.000  1.000     6
+eczema    1.000  1.000  1.000     6
+oily      1.000  1.000  1.000     6
+dry       1.000  1.000  1.000     6
+normal    1.000  1.000  1.000     6
+
+confusion (rows = true, cols = predicted)
+           acne eczema   oily    dry normal
+acne          6      0      0      0      0
+eczema        0      6      0      0      0
+oily          0      0      6      0      0
+dry           0      0      0      6      0
+normal        0      0      0      0      6
+
+== skinlens_fp32.tflite severity (non-normal tiles)
+accuracy 0.7500   macro-F1 0.7389
+
+class      prec recall     F1     n
+mild      0.667  1.000  0.800     8
+moderate  0.750  0.750  0.750     8
+severe    1.000  0.500  0.667     8
+
+confusion (rows = true, cols = predicted)
+           mild modera severe
+mild          8      0      0
+moderate      2      6      0
+severe        2      2      4
+
+== skinlens_fp16.tflite
+accuracy 1.0000   macro-F1 1.0000
+
+class      prec recall     F1     n
+acne      1.000  1.000  1.000     6
+eczema    1.000  1.000  1.000     6
+oily      1.000  1.000  1.000     6
+dry       1.000  1.000  1.000     6
+normal    1.000  1.000  1.000     6
+
+confusion (rows = true, cols = predicted)
+           acne eczema   oily    dry normal
+acne          6      0      0      0      0
+eczema        0      6      0      0      0
+oily          0      0      6      0      0
+dry           0      0      0      6      0
+normal        0      0      0      0      6
+
+== skinlens_fp16.tflite severity (non-normal tiles)
+accuracy 0.7500   macro-F1 0.7389
+
+class      prec recall     F1     n
+mild      0.667  1.000  0.800     8
+moderate  0.750  0.750  0.750     8
+severe    1.000  0.500  0.667     8
+
+confusion (rows = true, cols = predicted)
+           mild modera severe
+mild          8      0      0
+moderate      2      6      0
+severe        2      2      4
+
+== skinlens_int8.tflite
+accuracy 0.6333   macro-F1 0.6196
+
+class      prec recall     F1     n
+acne      1.000  1.000  1.000     6
+eczema    1.000  0.500  0.667     6
+oily      0.750  0.500  0.600     6
+dry       0.375  1.000  0.545     6
+normal    1.000  0.167  0.286     6
+
+confusion (rows = true, cols = predicted)
+           acne eczema   oily    dry normal
+acne          6      0      0      0      0
+eczema        0      3      0      3      0
+oily          0      0      3      3      0
+dry           0      0      0      6      0
+normal        0      0      1      4      1
+
+== skinlens_int8.tflite severity (non-normal tiles)
+accuracy 0.7083   macro-F1 0.7139
+
+class      prec recall     F1     n
+mild      0.667  0.750  0.706     8
+moderate  0.600  0.750  0.667     8
+severe    1.000  0.625  0.769     8
+
+confusion (rows = true, cols = predicted)
+           mild modera severe
+mild          6      2      0
+moderate      2      6      0
+severe        1      2      5

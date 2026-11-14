@@ -1,0 +1,22 @@
+{
+  "temperature": 0.75,
+  "val_nll": 0.5435475436225266,
+  "severity_temperature": 0.88,
+  "severity_val_nll": 0.7328555316261575,
+  "classes": [
+    "acne",
+    "eczema",
+    "oily",
+    "dry",
+    "normal"
+  ],
+  "severity": [
+    "mild",
+    "moderate",
+    "severe"
+  ],
+  "backbone": "efficientnetb0",
+  "manifests": [
+    "split_manifest.csv"
+  ]
+}

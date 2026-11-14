@@ -1,0 +1,86 @@
+backbone efficientnetb0, data split_manifest.csv
+
+temperature 0.75 (val NLL 0.5435); severity temperature 0.88 (val NLL 0.7329)
+
+== validation
+accuracy 0.7600   macro-F1 0.7671
+
+class      prec recall     F1     n
+acne      1.000  0.800  0.889     5
+eczema    1.000  1.000  1.000     5
+oily      1.000  0.600  0.750     5
+dry       0.455  1.000  0.625     5
+normal    1.000  0.400  0.571     5
+
+confusion (rows = true, cols = predicted)
+           acne eczema   oily    dry normal
+acne          4      0      0      1      0
+eczema        0      5      0      0      0
+oily          0      0      3      2      0
+dry           0      0      0      5      0
+normal        0      0      0      3      2
+
+== test
+accuracy 1.0000   macro-F1 1.0000
+
+class      prec recall     F1     n
+acne      1.000  1.000  1.000     6
+eczema    1.000  1.000  1.000     6
+oily      1.000  1.000  1.000     6
+dry       1.000  1.000  1.000     6
+normal    1.000  1.000  1.000     6
+
+confusion (rows = true, cols = predicted)
+           acne eczema   oily    dry normal
+acne          6      0      0      0      0
+eczema        0      6      0      0      0
+oily          0      0      6      0      0
+dry           0      0      0      6      0
+normal        0      0      0      0      6
+
+== test + horizontal-flip TTA
+accuracy 1.0000   macro-F1 1.0000
+
+class      prec recall     F1     n
+acne      1.000  1.000  1.000     6
+eczema    1.000  1.000  1.000     6
+oily      1.000  1.000  1.000     6
+dry       1.000  1.000  1.000     6
+normal    1.000  1.000  1.000     6
+
+confusion (rows = true, cols = predicted)
+           acne eczema   oily    dry normal
+acne          6      0      0      0      0
+eczema        0      6      0      0      0
+oily          0      0      6      0      0
+dry           0      0      0      6      0
+normal        0      0      0      0      6
+
+== severity, validation (non-normal tiles)
+accuracy 0.7500   macro-F1 0.6671
+
+class      prec recall     F1     n
+mild      0.700  0.875  0.778     8
+moderate  1.000  0.250  0.400     4
+severe    0.778  0.875  0.824     8
+
+confusion (rows = true, cols = predicted)
+           mild modera severe
+mild          7      0      1
+moderate      2      1      1
+severe        1      0      7
+
+== severity, test (non-normal tiles)
+accuracy 0.7500   macro-F1 0.7389
+
+class      prec recall     F1     n
+mild      0.667  1.000  0.800     8
+moderate  0.750  0.750  0.750     8
+severe    1.000  0.500  0.667     8
+
+confusion (rows = true, cols = predicted)
+           mild modera severe
+mild          8      0      0
+moderate      2      6      0
+severe        2      2      4
+mild<->severe confusions (off by two levels): 2
